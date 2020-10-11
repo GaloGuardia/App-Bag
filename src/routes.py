@@ -10,12 +10,31 @@ app = Flask(__name__)
 def index():
     return render_template('translator.html', languages=googletrans.LANGUAGES)
 
+@app.route("/translator")
+def interpreter():
+    return render_template('translator.html', languages=googletrans.LANGUAGES)
+
 @app.route("/translate", methods=['GET', 'POST'])
 def translate():
-    if request.method == 'GET':
-        return 'hola'
-    else:
-        return 'hola2'
+    if request.method == 'POST':
+        translator = Translator()
+        fromLanguageKey = request.form.get('fromLanguages')
+        toLanguageKey = request.form.get('toLanguages')
+        texto = request.form.get('texto')
+
+        if (fromLanguageKey == 'detect'):
+            dt = translator.detect(texto)
+            fromLanguageKey = dt.lang
+
+        textTranslated = translator.translate(texto, src=fromLanguageKey, dest=toLanguageKey).text
+
+        for key, language in googletrans.LANGUAGES.items():
+            if (key == fromLanguageKey):
+                language1 = language
+            elif (key == toLanguageKey):
+                language2 = language
+
+        return render_template('translator.html', languages=googletrans.LANGUAGES, fromLanguageKey=fromLanguageKey, toLanguageKey=toLanguageKey, firstLanguage=language1, secondLanguage=language2, texto=texto, textTranslated=textTranslated)
 
 @app.errorhandler(404)
 def page_not_found(error):

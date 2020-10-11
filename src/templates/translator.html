@@ -1,20 +1,46 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Translator</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-</head>
-<body>
-    <select name="languages" id="languages">
-        {% for key, language in languages.items() %}
-        <option value="{{ key }}">{{ language }}</option>
-        {% endfor %}
-    </select>
-    <form action="{{ url_for('translate') }}" method="get">
-        <p><input type="text" name="" id=""></p>
-        <button type="submit">Translate</button>
+{% extends "base.html" %}
+{% block title %}Translator{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='translator.css') }}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <form action="{{ url_for('translate') }}" method="POST">
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <select class="form-control" name="fromLanguages" id="fromLanguages">
+                    {% if fromLanguageKey %}
+                    <option value="{{ fromLanguageKey }}">{{firstLanguage | capitalize}}</option>
+                    {% endif %}
+                    <option value="detect">Detect Language</option>
+                    {% for key, language in languages.items() %}
+                        {% if not key == fromLanguageKey %}
+                        <option value="{{ key }}">{{ language | capitalize }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <textarea class="form-control rounded-0" name="texto" id="texto" rows="6">{{texto}}</textarea>
+            </div>
+            <div class="col-md-6">
+                <select class="form-control" name="toLanguages" id="toLanguages">
+                    {% if toLanguageKey %}
+                    <option value="{{ toLanguageKey }}">{{secondLanguage | capitalize}}</option>
+                    {% endif %}
+                    {% for key, language in languages.items() %}
+                        {% if not key == toLanguageKey %}
+                        <option value="{{ key }}">{{ language | capitalize }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <textarea class="form-control rounded-0" name="traduccion" id="traduccion" rows="6" readonly>{{textTranslated}}</textarea>
+            </div>
+        </div>
+        <br>
+        <div class="text-center">
+            <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Translate</button>
+        </div>
     </form>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-</body>
-</html>
+</div>
+{% endblock %}
