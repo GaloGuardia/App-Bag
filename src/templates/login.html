@@ -1,16 +1,59 @@
-{% extends "base.html" %}
-{% block title %}Translator{% endblock %}
-{% block head %}
-    {{ super() }}
-{% endblock %}
-{% block content %}
-    <select name="languages" id="languages">
-        {% for key, language in languages.items() %}
-        <option value="{{ key }}">{{ language }}</option>
-        {% endfor %}
-    </select>
-    <form action="{{ url_for('translate') }}" method="get">
-        <p><input type="text" name="" id=""></p>
-        <button type="submit">Translate</button>
-    </form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../static/login/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../static/login/css/main.css">
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title" style="background-image: url(../static/login/images/bg-01.jpg);">
+					<span class="login100-form-title-1">
+						Login
+					</span>
+				</div>
+
+                <!-- {{ url_for('index') }} -->
+				<form class="login100-form" action="http://127.0.0.1:5000/index" method="GET">
+					<div class="wrap-input100 m-b-26">
+						<span class="label-input100">Usuario</span>
+                        <input class="input100" type="text" name="username" placeholder="Enter username" title="Debe ingresar un nombre de usuario con 8 o más caracteres" pattern=".{8,}" required>
+						<span class="focus-input100"></span>
+                    </div>
+
+					<div class="wrap-input100 m-b-18">
+						<span class="label-input100">Contraseña</span>
+						<input class="input100" type="password" name="pass" placeholder="Enter password" title="Debe ingresar una contraseña con 8 o mas caracteres, al menos una mayuscula y un numero" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="flex-sb-m w-full p-b-30">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								Recuerdame
+							</label>
+						</div>
+
+						<div>
+							<a href="#" class="txt1">
+								Olvido su contraseña?
+							</a>
+						</div>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Ingresar
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+    </div>
+</body>
+</html>

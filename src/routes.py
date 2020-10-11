@@ -5,8 +5,8 @@ from googletrans import Translator
 
 app = Flask(__name__)
 
-@app.route("/")
-@app.route("/index")
+@app.route("/", methods=['GET'])
+@app.route("/index", methods=['GET'])
 def index():
     return render_template('translator.html', languages=googletrans.LANGUAGES)
 
