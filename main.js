@@ -1,7 +1,13 @@
 const {app, BrowserWindow} = require('electron')
 
 function createWindow () {
-    window = new BrowserWindow({width: 800, height: 600})
+    window = new BrowserWindow({
+        width: 800,
+        height: 600,
+        center: true,
+        icon: 'src/imgs/logo.ico',
+        autoHideMenuBar: true,
+    });
     window.loadFile('src/templates/login.html')
 
     var pyshell =  require('python-shell');
