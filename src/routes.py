@@ -5,6 +5,14 @@ from googletrans import Translator
 
 app = Flask(__name__)
 
+@app.route("/login")
+def login():
+    return render_template('login.html')
+
+@app.route("/signin")
+def signin():
+    return render_template('signin.html')
+
 @app.route("/", methods=['GET'])
 @app.route("/index", methods=['GET'])
 def index():
