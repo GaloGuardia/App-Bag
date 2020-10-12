@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a class="navbar-brand" href="#">
-            <img src="../imgs/logo.png" width="30" height="30" alt="Logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" width="40" height="40" alt="Logo">
         </a>
     </nav>
     <br>
@@ -24,6 +24,7 @@
     <br>
     <p class="text-center">&copy; Copyright 2020.</p>
     {% endblock %}
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
 </html>
