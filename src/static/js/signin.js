@@ -6,6 +6,7 @@ if (document.readyState !== 'loading') {
     });
 }
 
+<<<<<<< HEAD
 function successSignIn(evento) {
     evento.preventDefault();
 
@@ -14,6 +15,15 @@ function successSignIn(evento) {
         pass = document.getElementById("pass").value,
         confirmPass = document.getElementById("confirmpass").value;
 
+=======
+let fullname = document.getElementById('fullname').value,
+    user = document.getElementById('username').value,
+    pass = document.getElementById("pass").value,
+    confirmPass = document.getElementById("confirmpass").value;
+
+function successSignIn(evento) {
+    evento.preventDefault();
+>>>>>>> b9b34d77112c5fe71a53b70cf7f7e3b992040576
     if (pass != confirmPass)
         return;
     else
