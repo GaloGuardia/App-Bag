@@ -405,7 +405,6 @@ input.input100 {
 }
 
 .label-checkbox100::before {
-<<<<<<< HEAD
     content: "\2713\0020";
     font-family: FontAwesome;
     font-size: 13px;
@@ -434,33 +433,6 @@ input.input100 {
 
 .input-checkbox100:checked+.label-checkbox100::before {
     color: #57b846;
-=======
-  content: "\2713\0020";
-  font-family: FontAwesome;
-  font-size: 13px;
-  color: transparent;
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-radius: 2px;
-  background: #fff;
-  border: 1px solid #e6e6e6;
-  left: 0;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
->>>>>>> b9b34d77112c5fe71a53b70cf7f7e3b992040576
 }
 
 
@@ -478,8 +450,7 @@ input.input100 {
 }
 
 .login100-form-btn {
-<<<<<<< HEAD
-    <<<<<<< HEAD display: -webkit-box;
+    <<<<<<< HEAD <<<<<<< HEAD display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
     display: -ms-flexbox;
@@ -519,31 +490,27 @@ input.input100 {
     -o-transition: all 0.4s;
     -moz-transition: all 0.4s;
     transition: all 0.4s;
+    >>>>>>>b9b34d77112c5fe71a53b70cf7f7e3b992040576=======display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    min-width: 160px;
+    height: 50px;
+    background-color: #488f3c;
+    border-radius: 25px;
+    font-family: Poppins-Regular;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.2;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
     >>>>>>>b9b34d77112c5fe71a53b70cf7f7e3b992040576
-=======
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
-  min-width: 160px;
-  height: 50px;
-  background-color: #488f3c;
-  border-radius: 25px;
-
-  font-family: Poppins-Regular;
-  font-size: 16px;
-  color: #fff;
-  line-height: 1.2;
-
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  transition: all 0.4s;
->>>>>>> b9b34d77112c5fe71a53b70cf7f7e3b992040576
 }
 
 .login100-form-btn:hover {
