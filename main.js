@@ -5,7 +5,7 @@ function createWindow() {
         width: 800,
         height: 600,
         center: true,
-        icon: 'src/imgs/logo.ico',
+        icon: 'src/static/images/logo.ico',
         autoHideMenuBar: true,
     });
     window.loadFile('src/templates/login.html');
