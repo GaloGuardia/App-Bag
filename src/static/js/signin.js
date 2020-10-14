@@ -6,13 +6,12 @@ if (document.readyState !== 'loading') {
     });
 }
 
-let fullname = document.getElementById('fullname').value,
-    user = document.getElementById('username').value,
-    pass = document.getElementById("pass").value,
-    confirmPass = document.getElementById("confirmpass").value;
-
 function successSignIn(evento) {
     evento.preventDefault();
+
+    let pass = document.getElementById("pass").value,
+        confirmPass = document.getElementById("confirmpass").value;
+
     if (pass != confirmPass)
         return;
     else

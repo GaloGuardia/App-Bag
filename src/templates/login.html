@@ -21,13 +21,13 @@
 				<form class="login100-form" action="http://127.0.0.1:5000/index" onsubmit="send()" method="GET" id="formLogin">
 					<div class="wrap-input100 m-b-26">
 						<span class="label-input100">Usuario</span>
-                        <input class="input100" type="text" name="username" id="username" placeholder="Enter username" title="Debe ingresar un nombre de usuario con 8 o más caracteres" pattern=".{8,}" required>
+                        <input class="input100" type="text" name="username" id="username" placeholder="Enter username" title="Ingrese un usuario valido" pattern="[a-z0-9]{8,}" required>
 						<span class="focus-input100"></span>
                     </div>
 
 					<div class="wrap-input100 m-b-18">
 						<span class="label-input100">Contraseña</span>
-						<input class="input100" type="password" name="pass" id="pass" placeholder="Enter password" title="Debe ingresar una contraseña con 8 o mas caracteres, al menos una mayuscula y un numero" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+						<input class="input100" type="password" name="pass" id="pass" placeholder="Enter password" title="Ingrese una contraseña valida" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)([A-Za-z\d]|[^ ]){8,}$" required>
 						<span class="focus-input100"></span>
 					</div>
 
