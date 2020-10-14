@@ -39,6 +39,9 @@ def translate():
         toLanguageKey = request.form.get('toLanguages')
         texto = request.form.get('texto')
 
+        if not (texto):
+            return interpreter()
+
         if (fromLanguageKey == 'detect'):
             dt = translator.detect(texto)
             fromLanguageKey = dt.lang
