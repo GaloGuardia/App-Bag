@@ -7,15 +7,6 @@ app = Flask(__name__)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        fullname = request.form.get('fullname').strip()
-        email = request.form.get('email').strip()
-        username = request.form.get('username').strip()
-        password = request.form.get('pass').strip()
-        
-        # Enviar a la base
-        
-        return password
     return render_template('login.html')
 
 @app.route("/signin", methods=['GET', 'POST'])
