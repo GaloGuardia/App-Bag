@@ -3,3 +3,4 @@ env/
 .vscode/
 package-lock.json
 ServiceAccountKey.json
+src/databases/
