@@ -13,8 +13,8 @@ def login():
 def signin():
     return render_template('signin.html')
 
-@app.route("/", methods=['GET'])
-@app.route("/index", methods=['GET'])
+@app.route("/", methods=['GET', 'POST'])
+@app.route("/index", methods=['GET', 'POST'])
 def index():
     return render_template('translator.html', languages=googletrans.LANGUAGES)
 

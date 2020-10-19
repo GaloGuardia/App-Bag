@@ -1,62 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<title>Login</title>
-	<meta charset="UTF-8">
+    <title>Login</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="../static/login/css/util.css">
-	<link rel="stylesheet" type="text/css" href="../static/login/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="../static/login/css/main.css">
 </head>
+
 <body>
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<div class="login100-form-title" style="background-image: url(../static/login/images/fondo.jpg);">
-					<span class="login100-form-title-1">
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-form-title" style="background-image: url(../static/login/images/fondo.jpg);">
+                    <span class="login100-form-title-1">
 						Login
 					</span>
-				</div>
+                </div>
 
                 <!-- {{ url_for('index') }} -->
-				<form class="login100-form" action="http://127.0.0.1:5000/index" onsubmit="send()" method="GET" id="formLogin">
-					<div class="wrap-input100 m-b-26">
-						<span class="label-input100">Usuario</span>
+                <form class="login100-form" action="http://127.0.0.1:5000/index" method="POST" id="formLogin">
+                    <div class="wrap-input100 m-b-26">
+                        <span class="label-input100">Usuario</span>
                         <input class="input100" type="text" name="username" id="username" placeholder="Enter username" title="Ingrese un usuario valido" pattern="[a-z0-9]{8,}" required>
-						<span class="focus-input100"></span>
+                        <span class="focus-input100"></span>
                     </div>
 
-					<div class="wrap-input100 m-b-18">
-						<span class="label-input100">Contraseña</span>
-						<input class="input100" type="password" name="pass" id="pass" placeholder="Enter password" title="Ingrese una contraseña valida" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)([A-Za-z\d]|[^ ]){8,}$" required>
-						<span class="focus-input100"></span>
-					</div>
+                    <div class="wrap-input100 m-b-18">
+                        <span class="label-input100">Contraseña</span>
+                        <input class="input100" type="password" name="pass" id="pass" placeholder="Enter password" title="Ingrese una contraseña valida" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)([A-Za-z\d]|[^ ]){8,}$" required>
+                        <span class="focus-input100"></span>
+                    </div>
 
-					<div class="flex-sb-m w-full p-b-30">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
+                    <div class="flex-sb-m w-full p-b-30">
+                        <div class="contact100-form-checkbox">
+                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                            <label class="label-checkbox100" for="ckb1">
 								Recuerdame
 							</label>
-						</div>
+                        </div>
 
-						<div>
-							<a href="http://127.0.0.1:5000/signin" class="txt1">
+                        <div>
+                            <a href="http://127.0.0.1:5000/signin" class="txt1">
 								Registrarse
 							</a>
-						</div>
-					</div>
+                        </div>
+                    </div>
 
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">
 							Ingresar
 						</button>
-					</div>
+                    </div>
 
-				</form>
-			</div>
-		</div>
-	</div>
-	
-	<script src="{{ url_for('static', filename='js/login.js') }}" type='text/javascript'></script>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/login.js') }}" type='text/javascript'></script>
 </body>
+
 </html>

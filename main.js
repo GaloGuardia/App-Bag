@@ -28,7 +28,7 @@ let databases = {};
 
 function loadDatabases() {
     let datastore = Datastore.create('./src/databases/users.db');
-    datastore.load().then(async() => {
+    datastore.load().then(() => {
         databases.users = datastore;
         // databases.users.ensureIndex({ fieldName: 'username', unique: true }, function (err) {
         //     if (err) alert(err);
