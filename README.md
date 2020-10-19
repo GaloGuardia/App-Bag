@@ -17,6 +17,8 @@
   * [Electron](https://www.electronjs.org/)
   * [Bootstrap](https://getbootstrap.com)
   * [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
+  * [Nedb](https://github.com/louischatriot/nedb)
+  * [Nedb-promises](https://github.com/bajankristof/nedb-promises)
 
 ## Getting Started
 
