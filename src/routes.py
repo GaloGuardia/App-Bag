@@ -1,10 +1,17 @@
 import sys
+import time
+from os import remove
+from pathlib import Path
+import glob
 import googletrans
+import qrcode
+from PIL import Image
 from flask import Flask, render_template, request
 from googletrans import Translator
 
 app = Flask(__name__)
 
+@app.route("/", methods=['GET', 'POST'])
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     return render_template('login.html')
@@ -13,17 +20,25 @@ def login():
 def signin():
     return render_template('signin.html')
 
-@app.route("/", methods=['GET', 'POST'])
-@app.route("/index", methods=['GET', 'POST'])
-def index():
-    return render_template('translator.html', languages=googletrans.LANGUAGES)
+@app.route("/home", methods=['GET', 'POST'])
+def home():
+    services = [
+        {
+            "url": "translator",
+            "name": "Translator",
+            "pathImg": Path("static/images/logoTranslator.jpg")
+        },
+        {
+            "url": "codeQR",
+            "name": "QR Code",
+            "pathImg": Path("static/images/logoQR.jpg")
+        }
+    ]
+    
+    return render_template('home.html', services=services)
 
-@app.route("/translator")
-def interpreter():
-    return render_template('translator.html', languages=googletrans.LANGUAGES)
-
-@app.route("/translate", methods=['GET', 'POST'])
-def translate():
+@app.route("/translator", methods=['GET', 'POST'])
+def translator():
     if request.method == 'POST':
         translator = Translator()
         fromLanguageKey = request.form.get('fromLanguages')
@@ -31,7 +46,7 @@ def translate():
         texto = request.form.get('texto')
 
         if not (texto):
-            return interpreter()
+            return render_template('translator.html', languages=googletrans.LANGUAGES)
 
         if (fromLanguageKey == 'detect'):
             dt = translator.detect(texto)
@@ -46,6 +61,40 @@ def translate():
                 language2 = language
 
         return render_template('translator.html', languages=googletrans.LANGUAGES, fromLanguageKey=fromLanguageKey, toLanguageKey=toLanguageKey, firstLanguage=language1, secondLanguage=language2, texto=texto, textTranslated=textTranslated)
+
+    return render_template('translator.html', languages=googletrans.LANGUAGES)
+
+@app.route("/codeQR", methods=['GET', 'POST'])
+def codeQR():
+    if request.method == 'POST':
+        texto = request.form.get('texto')
+        
+        if not (texto):
+            return render_template('qrcode.html')
+
+        qr_big = qrcode.QRCode(
+            error_correction=qrcode.constants.ERROR_CORRECT_H
+        )
+        qr_big.add_data(texto)
+        qr_big.make()
+        img_qr_big = qr_big.make_image().convert('RGB')
+        
+        fileList = Path("src/static/images").glob("QRCode-*.png")
+        # Iterate over the list of filepaths & remove each file.
+        for filePath in fileList:
+            try:
+                remove(filePath)
+            except:
+                print("Error while deleting file : ", filePath)
+        
+        nameImg = "QRCode-" + str(time.time()) + ".png"
+        pathImg = Path("src/static/images").joinpath(nameImg)
+
+        img_qr_big.save(pathImg)
+        
+        return render_template('qrcode.html', nameImg=nameImg, texto=texto)
+        
+    return render_template('qrcode.html')
 
 @app.errorhandler(404)
 def page_not_found(error):
