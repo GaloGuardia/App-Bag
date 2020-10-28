@@ -24,7 +24,6 @@ class DatabaseDAO {
     }
 
     async find(data) {
-        // { planet: 'Mars' }
         return await this.db.find(data);
     }
 
