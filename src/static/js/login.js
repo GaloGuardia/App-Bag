@@ -31,18 +31,18 @@ async function successLoginIn(evento) {
         pass = document.getElementById("pass").value,
         check = document.getElementById('ckb1').checked;
 
-    await newDatabaseDAO.find({ username: username }).then(async(docs) => {
+    await newDatabaseDAO.find({ username: username }).then((docs) => {
         if (docs.length == 0 || docs[0].pass != pass) return;
 
-        let usernameRem = await settings.get('username');
+        let usernameRem = settings.getSync('username');
         if (check && usernameRem != docs[0].username) {
-            await settings.set('username', username);
-            await settings.set('pass', pass);
+            settings.setSync('username', username);
+            settings.setSync('pass', pass);
         } else if (!check && usernameRem == docs[0].username) {
-            await settings.unset();
+            settings.unsetSync();
         }
 
-        global.username = username;
+        global.username = docs[0].username;
         this.submit();
     });
 }
