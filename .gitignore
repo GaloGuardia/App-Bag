@@ -2,5 +2,5 @@ node_modules/
 env/
 .vscode/
 package-lock.json
-ServiceAccountKey.json
 src/databases/
+src/static/images/QRCode*.png

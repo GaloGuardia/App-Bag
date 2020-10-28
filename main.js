@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron');
+// const debug = require("electron-debug");
 // const Datastore = require("nedb");
 const Datastore = require('nedb-promises');
 
@@ -10,6 +11,7 @@ function createWindow() {
         center: true,
         icon: 'src/static/images/logo.ico',
         autoHideMenuBar: true,
+        webPreferences: { nodeIntegration: true }
     });
 
     loadDatabases();
@@ -30,9 +32,6 @@ function loadDatabases() {
     let datastore = Datastore.create('./src/databases/users.db');
     datastore.load().then(() => {
         databases.users = datastore;
-        // databases.users.ensureIndex({ fieldName: 'username', unique: true }, function (err) {
-        //     if (err) alert(err);
-        // });
     }).catch((err) => {
         alert(err);
     });
