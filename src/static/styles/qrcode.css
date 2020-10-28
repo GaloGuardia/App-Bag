@@ -1,0 +1,20 @@
+.qr-img {
+    margin-top: 5px;
+}
+
+.input-text-qr {
+    text-align: center;
+}
+
+
+/* Green */
+
+.success {
+    border-color: #487544;
+    color: green;
+}
+
+.success:hover {
+    background-color: #487544;
+    color: white;
+}

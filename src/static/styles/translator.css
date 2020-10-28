@@ -1,0 +1,18 @@
+textarea {
+    resize: none;
+    width: 100%;
+    margin-top: 5px;
+}
+
+
+/* Green */
+
+.success {
+    border-color: #487544;
+    color: green;
+}
+
+.success:hover {
+    background-color: #487544;
+    color: white;
+}

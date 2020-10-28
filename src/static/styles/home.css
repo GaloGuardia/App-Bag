@@ -1,0 +1,20 @@
+.title-home {
+    margin: 10px;
+}
+
+.services-cards {
+    margin: 0px 100px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+a.link-card {
+    text-decoration: none;
+}
+
+div.service-card {
+    width: 16rem;
+    color: black;
+}
