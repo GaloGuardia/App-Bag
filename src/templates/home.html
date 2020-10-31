@@ -10,6 +10,24 @@
 </head>
 
 <body>
+    <!--Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #487544;">
+        <div class="col-md-4 text-left">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" width="40" height="40" alt="Logo">
+            </a>
+        </div>
+        <div class="col-md-4 text-center align-middle">
+            <i><b><span class="badge badge-pill badge-light" id="date-app" style="font-size: 15px;"></span></b></i>
+        </div>
+        <div class="col-md-4 text-right mr-0">
+            <a class="navbar-brand" href="{{ url_for('login') }}">
+                <img src="{{ url_for('static', filename='images/logout.png') }}" width="40" height="40" alt="Logo">
+            </a>
+        </div>
+    </nav>
+    <!--/.Navbar -->
+
     <div class="text-center title-home">
         <h3><i><b>Home</b></i></h3>
     </div>
@@ -29,8 +47,9 @@
     </div>
 
     <script src="../static/styles/bootstrap-4.5.3-dist/jquery-3.5.1.slim.min.js " onload="window.$= window.jQuery= module.exports;"></script>
-    <script src="../static/styles/bootstrap-4.5.3-dist/css/popper.min.js"></script>
+    <script src="../static/styles/bootstrap-4.5.3-dist/popper.min.js"></script>
     <script src="../static/styles/bootstrap-4.5.3-dist/js/bootstrap.min.js "></script>
+    <script src="../static/js/base.js"></script>
 </body>
 
 </html>
