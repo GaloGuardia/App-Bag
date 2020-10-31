@@ -10,12 +10,12 @@ if (document.readyState !== 'loading') {
     });
 }
 
-async function load() {
+function load() {
     document.getElementById("formLogin").addEventListener('submit', successLoginIn);
 
-    if (await settings.has('username') && await settings.has('pass')) {
-        let username = await settings.get('username');
-        let pass = await settings.get('pass');
+    if (settings.hasSync('username') && settings.hasSync('pass')) {
+        let username = settings.getSync('username');
+        let pass = settings.getSync('pass');
         document.getElementById("username").value = username;
         document.getElementById("pass").value = pass;
         document.getElementById("ckb1").checked = true;
@@ -32,7 +32,14 @@ async function successLoginIn(evento) {
         check = document.getElementById('ckb1').checked;
 
     await newDatabaseDAO.find({ username: username }).then((docs) => {
-        if (docs.length == 0 || docs[0].pass != pass) return;
+        if (docs.length == 0 || docs[0].pass != pass) {
+            $('.toast').toast('show');
+            $('#toast-body').text("Las credenciales son incorrectas");
+            setTimeout(() => {
+                $('.toast').toast('hide');
+            }, 4000);
+            return;
+        }
 
         let usernameRem = settings.getSync('username');
         if (check && usernameRem != docs[0].username) {
