@@ -3,18 +3,19 @@ const { app, BrowserWindow } = require('electron');
 // const Datastore = require("nedb");
 const Datastore = require('nedb-promises');
 
-function createWindow() {
+async function createWindow() {
     app.commandLine.appendSwitch("disable-http-cache");
     window = new BrowserWindow({
         width: 800,
         height: 600,
+        minWidth: 400,
         center: true,
         icon: 'src/static/images/logo.ico',
         autoHideMenuBar: true,
         webPreferences: { nodeIntegration: true }
     });
 
-    loadDatabases();
+    await loadDatabases();
 
     var pyshell = require('python-shell');
     pyshell.run('src/routes.py', function(err, results) {
@@ -28,10 +29,10 @@ function createWindow() {
 
 let databases = {};
 
-function loadDatabases() {
-    let datastore = Datastore.create('./src/databases/users.db');
-    datastore.load().then(() => {
-        databases.users = datastore;
+async function loadDatabases() {
+    let datastoreUsers = Datastore.create('./src/databases/users.db');
+    await datastoreUsers.load().then(() => {
+        databases.users = datastoreUsers;
     }).catch((err) => {
         alert(err);
     });
