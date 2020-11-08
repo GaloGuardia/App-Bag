@@ -49,7 +49,7 @@ async function successLoginIn(evento) {
             settings.unsetSync();
         }
 
-        global.username = docs[0].username;
+        settings.setSync('username-app-global', username);
         this.submit();
     });
 }

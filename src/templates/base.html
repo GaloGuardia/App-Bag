@@ -6,22 +6,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/styles/bootstrap-4.5.3-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../static/styles/navbar-app.css" />
     <title>{% block title %}{% endblock %} - App Bag</title>
     {% endblock %}
 </head>
 
-<body>
+<body style="background-color: rgb(218, 218, 218);">
     <!--Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #487544;">
-        <div class="col-md-4 text-left">
-            <a class="navbar-brand" href="{{ url_for('home') }}">
-                <img src="{{ url_for('static', filename='images/left-arrow.png') }}" width="40" height="40" alt="Go Back">
-            </a>
-        </div>
-        <div class="col-md-4 text-center align-middle">
-            <i><b><span class="badge badge-pill badge-light" id="date-app" style="font-size: 15px;"></span></b></i>
-        </div>
-        <div class="col-md-4 text-right">
+        <div class="nav-app-base">
+            <div class="row">
+                <div class="flex-column ml-3 icon-app">
+                    <a class="navbar-brand" href="{{ url_for('home') }}">
+                        <img src="{{ url_for('static', filename='images/left-arrow.png') }}" width="40" height="40" alt="Go Back">
+                    </a>
+                </div>
+                <div class="flex-column align-self-center mx-auto">
+                    <i><b><span class="badge badge-pill badge-light" id="date-app"></span></b></i>
+                    <i><b><span class="badge badge-pill badge-light" id="time-app"></span></b></i>
+                </div>
+                <div class="div-blank-app"></div>
+            </div>
         </div>
     </nav>
     <!--/.Navbar -->

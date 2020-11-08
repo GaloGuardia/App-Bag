@@ -5,9 +5,8 @@
 .services-cards {
     margin: 0px 100px;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
+    flex-flow: row wrap;
+    justify-content: space-around;
 }
 
 a.link-card {
