@@ -40,6 +40,7 @@ body,
 html {
     height: 100%;
     font-family: Poppins-Regular, sans-serif;
+    background-color: rgb(218, 218, 218);
 }
 
 
@@ -279,6 +280,16 @@ iframe {
     text-transform: uppercase;
     line-height: 1.2;
     text-align: center;
+}
+
+.login100-form-title-2 {
+    font-family: Poppins-Bold;
+    font-size: 15px;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 1.2;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .login100-form-title::before {
