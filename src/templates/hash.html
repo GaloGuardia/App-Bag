@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block title %}Hash{% endblock %} {% block head %} {{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/hash.css') }}"> {% endblock %} {% block content %}
+<div class="container">
+    <form action="{{ url_for('hash') }}" method="POST">
+        <div class="row">
+            <div class="col-md-9">
+                <input class="form-control input-text-hash" type="text" name="texto" id="texto" value="{{ texto }}" maxlength="100">
+            </div>
+            <div class="col-md-3">
+                <select class="form-control" name="hashTypes" id="hashTypes">
+                    {% if hashType %}
+                    <option value="{{ hashType }}">{{ hashType | capitalize }}</option>
+                    {% endif %}
+                    {% for type in types %}
+                        {% if not type == hashType %}
+                        <option value="{{ type.replace(' ', '_') }}">{{ type | capitalize }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <textarea class="form-control rounded-0 text-center mt-3" name="textoHash" id="textoHash" rows="6" readonly>{{ textoHash }}</textarea>
+        <br>
+        <div class="text-center">
+            <button class="btn success btn-lg btn-block" type="submit">Generate Hash</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

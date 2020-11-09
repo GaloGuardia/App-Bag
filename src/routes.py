@@ -8,6 +8,7 @@ import qrcode
 from PIL import Image
 from flask import Flask, render_template, request
 from googletrans import Translator
+import hashlib
 
 app = Flask(__name__)
 
@@ -32,6 +33,11 @@ def home():
             "url": "codeQR",
             "name": "QR Code",
             "pathImg": Path("static/images/logoQR.jpg")
+        },
+        {
+            "url": "hash",
+            "name": "Hash",
+            "pathImg": Path("static/images/logoHash.png")
         }
     ]
     
@@ -95,6 +101,34 @@ def codeQR():
         return render_template('qrcode.html', nameImg=nameImg, texto=texto)
         
     return render_template('qrcode.html')
+
+@app.route("/hash", methods=['GET', 'POST'])
+def hash():
+    typesHash = hashlib.algorithms_guaranteed
+    
+    typesHashMod = []
+    for typeHash in typesHash:
+        typesHashMod.append(typeHash.replace("_", " "))
+    
+    if request.method == 'POST':
+        texto = request.form.get('texto')
+        hashTypeKey = request.form.get('hashTypes').replace(" ", "_")
+        textoHash = ""
+        
+        if not (texto):
+            return render_template('hash.html', types=typesHashMod)
+        
+        h = hashlib.new(hashTypeKey)
+        h.update(texto.encode("utf-8"))
+        try:
+            textoHash = h.hexdigest()
+        except TypeError:
+            # Algoritmo SHAKE requiere la longitud como argumento.
+            textoHash = h.hexdigest(128)
+        
+        return render_template('hash.html', types=typesHashMod, hashType=hashTypeKey.replace("_", " "), texto=texto, textoHash=textoHash)
+        
+    return render_template('hash.html', types=typesHashMod)
 
 @app.errorhandler(404)
 def page_not_found(error):
