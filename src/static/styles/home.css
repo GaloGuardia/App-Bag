@@ -17,3 +17,13 @@ div.service-card {
     width: 14rem;
     color: black;
 }
+
+#icon-alert {
+    margin-right: 10px;
+}
+
+#error-toast {
+    z-index: 100;
+    width: 50%;
+    margin-left: 25%;
+}

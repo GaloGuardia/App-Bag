@@ -12,17 +12,7 @@ import hashlib
 
 app = Flask(__name__)
 
-@app.route("/", methods=['GET', 'POST'])
-@app.route("/login", methods=['GET', 'POST'])
-def login():
-    return render_template('login.html')
-
-@app.route("/signin", methods=['GET', 'POST'])
-def signin():
-    return render_template('signin.html')
-
-@app.route("/home", methods=['GET', 'POST'])
-def home():
+def getServices():
     services = [
         {
             "url": "translator",
@@ -41,7 +31,24 @@ def home():
         }
     ]
     
-    return render_template('home.html', services=services)
+    return services
+
+@app.route("/", methods=['GET', 'POST'])
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    return render_template('login.html')
+
+@app.route("/signin", methods=['GET', 'POST'])
+def signin():
+    return render_template('signin.html')
+
+@app.route("/home", methods=['GET', 'POST'])
+def home():
+    error = request.form.get('error')
+    
+    services = getServices()
+    
+    return render_template('home.html', services=services, error=error)
 
 @app.route("/translator", methods=['GET', 'POST'])
 def translator():
@@ -54,11 +61,15 @@ def translator():
         if not (texto):
             return render_template('translator.html', languages=googletrans.LANGUAGES)
 
-        if (fromLanguageKey == 'detect'):
-            dt = translator.detect(texto)
-            fromLanguageKey = dt.lang
-
-        textTranslated = translator.translate(texto, src=fromLanguageKey, dest=toLanguageKey).text
+        try:
+            if (fromLanguageKey == 'detect'):
+                dt = translator.detect(texto)
+                fromLanguageKey = dt.lang
+            
+            textTranslated = translator.translate(texto, src=fromLanguageKey, dest=toLanguageKey).text
+        except Exception as e:
+            services = getServices()
+            return render_template('home.html', services=services, error="Translator")
 
         for key, language in googletrans.LANGUAGES.items():
             if (key == fromLanguageKey):

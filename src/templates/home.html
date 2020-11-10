@@ -12,52 +12,82 @@
 </head>
 
 <body style="background-color: rgb(218, 218, 218);">
-    <!--Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light nav-app">
-        <div class="icon-app">
-            <a class="navbar-brand" href="#">
-                <img src="{{ url_for('static', filename='images/logo.png') }}" width="40" height="40" alt="Logo">
-            </a>
-        </div>
-        <div>
-            <i><b><span class="badge badge-pill badge-light" id="date-app"></span></b></i>
-            <i><b><span class="badge badge-pill badge-light" id="time-app"></span></b></i>
-        </div>
-        <div class="icon-app">
-            <div class="dropdown">
-                <a class="navbar-brand" href="#" id="imageDropdown" data-toggle="dropdown">
-                    <img src="{{ url_for('static', filename='images/user-circle-solid.svg') }}" width="40" height="40" alt="Logo profile">
-                </a>
-                <div class="dropdown-menu dropdown-success dropdown-menu-right" aria-labelledby="imageDropdown">
-                    <a class="dropdown-item" href="{{ url_for('login') }}"><i class="fas fa-info-circle"></i>&nbsp; Account </a>
-                    <a class="dropdown-item" href="{{ url_for('login') }}"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout </a>
+    <div class="position-relative">
+        {% if error %}
+        <div class="position-absolute" id="error-toast" name="error-toast">
+            <div class="toast mx-auto" data-autohide="false">
+                <div class="toast-header">
+                    <i class="fas fa-exclamation-triangle" id="icon-alert"></i>
+                    <strong class="mr-auto text-danger" id="title-alert">Error de servicio</strong>
+                    <!-- <small class="text-muted">5 mins ago</small> -->
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
                 </div>
+                <b><div class="toast-body text-center" id="toast-body">
+                    Ha ocurrido un error con el servicio: '{{ error }}'.<br>
+                    Espere un momento e intentelo nuevamente.
+                </div></b>
             </div>
         </div>
-    </nav>
-    <!--/.Navbar -->
+        {% endif %}
 
-    <div class="text-center title-home">
-        <h3><i><b>Home</b></i></h3>
-    </div>
-    <hr>
-
-    <div class="services-cards">
-        {% for service in services %}
-        <div>
-            <a href="{{ url_for( service.url ) }} " class="link-card">
-                <div class="card border-success mb-3 service-card shadow p-3 mb-5 bg-white rounded">
-                    <div class="card-header text-center ">{{ service.name }}</div>
-                    <img src="{{ service.pathImg }}" class="card-img-top mt-1" alt="{{ service.name }} Image " width="100% " height="100% ">
+        <div style="z-index: 50;">
+            <!--Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light nav-app">
+                <div class="icon-app">
+                    <a class="navbar-brand" href="#">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" width="40" height="40" alt="Logo">
+                    </a>
                 </div>
-            </a>
+                <div>
+                    <i><b><span class="badge badge-pill badge-light" id="date-app"></span></b></i>
+                    <i><b><span class="badge badge-pill badge-light" id="time-app"></span></b></i>
+                </div>
+                <div class="icon-app">
+                    <div class="dropdown">
+                        <a class="navbar-brand" href="#" id="imageDropdown" data-toggle="dropdown">
+                            <img src="{{ url_for('static', filename='images/user-circle-solid.svg') }}" width="40" height="40" alt="Logo profile">
+                        </a>
+                        <div class="dropdown-menu dropdown-success dropdown-menu-right" aria-labelledby="imageDropdown">
+                            <a class="dropdown-item" href="{{ url_for('login') }}"><i class="fas fa-info-circle"></i>&nbsp; Account </a>
+                            <a class="dropdown-item" href="{{ url_for('login') }}"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!--/.Navbar -->
+
+            <div class="text-center title-home">
+                <h3><i><b>Home</b></i></h3>
+            </div>
+            <hr>
+
+            <div class="services-cards">
+                {% for service in services %}
+                <div>
+                    {% if error == service.name %}
+                    <a href="javascript:;" class="link-card" title="Servicio no disponible" style="cursor: default;">
+                        <div class="card border-success mb-3 service-card shadow p-3 mb-5 bg-white rounded" style="opacity: 0.5;">
+                            <div class="card-header text-center ">{{ service.name }}</div>
+                            <img src="{{ service.pathImg }}" class="card-img-top mt-1" alt="{{ service.name }} Image " width="100% " height="100% ">
+                        </div>
+                    </a>
+                    {% else %}
+                    <a href="{{ url_for( service.url ) }} " class="link-card">
+                        <div class="card border-success mb-3 service-card shadow p-3 mb-5 bg-white rounded">
+                            <div class="card-header text-center ">{{ service.name }}</div>
+                            <img src="{{ service.pathImg }}" class="card-img-top mt-1" alt="{{ service.name }} Image " width="100% " height="100% ">
+                        </div>
+                    </a> {% endif %}
+                </div>
+                {% endfor %}
+            </div>
         </div>
-        {% endfor %}
     </div>
 
     <script src="../static/styles/bootstrap-4.5.3-dist/jquery-3.5.1.slim.min.js " onload="window.$= window.jQuery= module.exports;"></script>
     <script src="../static/styles/bootstrap-4.5.3-dist/popper.min.js"></script>
     <script src="../static/styles/bootstrap-4.5.3-dist/js/bootstrap.min.js "></script>
+    <script src="../static/js/home.js"></script>
     <script src="../static/js/base.js"></script>
 </body>
 
