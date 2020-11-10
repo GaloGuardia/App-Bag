@@ -1,5 +1,4 @@
 const moment = require("moment");
-const settings = require('electron-settings');
 
 if (document.readyState !== 'loading') {
     load();
