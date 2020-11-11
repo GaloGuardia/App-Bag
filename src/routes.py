@@ -42,6 +42,10 @@ def login():
 def signin():
     return render_template('signin.html')
 
+@app.route("/infoaccount", methods=['GET', 'POST'])
+def infoaccount():
+    return render_template('infoaccount.html')
+
 @app.route("/home", methods=['GET', 'POST'])
 def home():
     error = request.form.get('error')
