@@ -2,16 +2,16 @@ const path = require("path");
 const DatabaseDAO = require(path.resolve("src/static/js/databaseDAO.js"));
 
 if (document.readyState !== 'loading') {
-    document.getElementById("formSignin").addEventListener('submit', successSignIn);
+    document.getElementById("formSignin").addEventListener('submit', checkSuccessSignIn);
 } else {
     document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById("formSignin").addEventListener('submit', successSignIn);
+        document.getElementById("formSignin").addEventListener('submit', checkSuccessSignIn);
     });
 }
 
 let newDatabaseDAO = new DatabaseDAO('users');
 
-async function successSignIn(evento) {
+async function checkSuccessSignIn(evento) {
     evento.preventDefault();
 
     let fullname = document.getElementById("fullname").value,
